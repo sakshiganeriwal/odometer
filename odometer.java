@@ -1,36 +1,6 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class odometer {
-	private static Scanner scanner;
-
-	public static void main(String[] args){
-		System.out.println(checkOdometer(1234));
-		System.out.println(prevOdometer(134));
-		System.out.println(nextOdometer(129));
-		System.out.println(diffReading(1678,1789));
-		scanner = new Scanner (System.in);
-		System.out.print("Enter which operation: \n 1.Next Reading \n 2.Previous Reading \n 3.Difference in Reading:");  
-		int name = scanner.nextInt();
-		int num = 0;
-		int result = 0;
-		switch(name){
-		case 1: 
-			System.out.println("case1");
-			num = scanner.nextInt();
-			result = nextOdometer(num);
-		case 2:
-			num = scanner.nextInt();
-			result = prevOdometer(num);
-		case 3:
-			int num1 = scanner.nextInt();
-			int num2 = scanner.nextInt();
-			result = diffReading(num1, num2);
-		default:
-			System.out.println("wrong selection");
-		}
-		System.out.println(result);
-	}
 	
 	public static void convertInt2Array(int guess, ArrayList<Integer> newGuess) {
 		String temp = Integer.toString(guess);
@@ -44,12 +14,17 @@ public class odometer {
 	{
 	ArrayList<Integer> newGuess = new ArrayList<Integer>();
 	convertInt2Array(number,newGuess);
-	for (int i = 0; i < newGuess.size() - 1; i++) {
+	if(newGuess.size() > 1 && newGuess.size() < 9){
+		for (int i = 0; i < newGuess.size() - 1; i++) {
 	        if (newGuess.get(i) >= newGuess.get(i + 1)) {
 	            return false;
 	        }
 	    }
 	    return true;
+	}
+	else
+		return false;
+	
 	}
 	
 	public static int nextOdometer(int n){
